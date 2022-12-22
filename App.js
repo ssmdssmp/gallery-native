@@ -1,12 +1,12 @@
-import Layout from "./components/Layout";
 import { setupStore } from "./store/store";
 import { Provider } from "react-redux";
+import { Navigation } from "./screens/Navigation";
 const store = setupStore();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Layout />
+      <Navigation />
     </Provider>
   );
 }

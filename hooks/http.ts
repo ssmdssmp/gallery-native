@@ -9,29 +9,29 @@ export const fetchImages = createAsyncThunk<IImage[], number>(
   "gallery/fetchImages",
   async () => {
     return await axios
-      .get(BASE_URL, { params: { per_page: 4, page: 1 } })
+      .get(BASE_URL, { params: { per_page: 20, page: 1 } })
       .then((res) => res.data);
   }
 );
-export const nextImage = createAsyncThunk<IImage, number>(
+export const nextImage = createAsyncThunk<IImage[], number>(
   "gallery/nextItem",
   async (page) => {
     return await axios
-      .get(BASE_URL, { params: { per_page: 1, page: page } })
+      .get(BASE_URL, { params: { per_page: 20, page: page } })
       .then((res) => {
         console.log(page);
-        return res.data[0];
+        return res.data;
       });
   }
 );
-export const prevImage = createAsyncThunk<IImage, number>(
+export const prevImage = createAsyncThunk<IImage[], number>(
   "gallery/prevItem",
   async (page) => {
     return await axios
-      .get(BASE_URL, { params: { per_page: 1, page: page } })
+      .get(BASE_URL, { params: { per_page: 20, page: page } })
       .then((res) => {
         console.log(page);
-        return res.data[0];
+        return res.data;
       });
   }
 );

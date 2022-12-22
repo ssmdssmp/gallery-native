@@ -20,7 +20,7 @@ const initialState: IGalleryState = {
     },
   },
   list: [],
-  currentPage: 2,
+  currentPage: 1,
   isLoading: false,
 };
 const gallerySlice = createSlice({
@@ -46,9 +46,7 @@ const gallerySlice = createSlice({
       })
       .addCase(nextImage.fulfilled, (state, { payload }) => {
         if (payload) {
-          state.list.push(payload);
-          state.list.shift();
-          state.activeImage = payload;
+          state.list = payload;
         }
 
         state.currentPage = state.currentPage + 1;
@@ -59,9 +57,7 @@ const gallerySlice = createSlice({
       })
       .addCase(prevImage.fulfilled, (state, { payload }) => {
         if (payload) {
-          state.list.unshift(payload);
-          state.list.pop();
-          state.activeImage = payload;
+          state.list = payload;
         }
         state.currentPage = state.currentPage - 1;
         state.isLoading = false;
