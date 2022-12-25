@@ -3,7 +3,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import ListImage from "../components/ListImage";
 import { useAppSelector } from "../hooks/redux";
 import tw from "twrnc";
-import { Button } from "@mui/material";
+import { Button } from "react-native";
 import Spinner from "../assets/spinner";
 import { nextPage, prevPage } from "../hooks/http";
 import { useAppDispatch } from "../hooks/redux";
