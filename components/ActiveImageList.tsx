@@ -36,12 +36,16 @@ const ActiveImageList = () => {
     }
   };
   return (
-    <View style={tw`w-full flex-row  justify-between mt-5`}>
+    <View style={tw`w-full flex-row  justify-between mt-1`}>
       {activeImageList.map((item) => {
         return (
-          <TouchableHighlight key={nanoid()} onPress={() => navigation(item)}>
+          <TouchableHighlight
+            style={tw`p-[2px] w-1/4`}
+            key={nanoid()}
+            onPress={() => navigation(item)}
+          >
             <Image
-              style={tw`h-22 w-22 rounded-md  ${
+              style={tw`h-22 w-full rounded-md  ${
                 activeImage.id === item.id ? "border-2 border-orange-500" : ""
               }`}
               source={{ uri: item.urls.small }}

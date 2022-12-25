@@ -27,7 +27,7 @@ const ListImage = ({
       }}
     >
       <Image
-        style={tw` h-22 w-full`}
+        style={tw` h-22 w-full rounded-md`}
         source={{ uri: image.urls.small }}
       ></Image>
     </TouchableHighlight>

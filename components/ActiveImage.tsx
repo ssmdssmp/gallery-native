@@ -1,21 +1,22 @@
 import { Image, View, Text } from "react-native";
 import { useAppSelector } from "../hooks/redux";
 import tw from "twrnc";
-
+import { TouchableHighlight } from "react-native-gesture-handler";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import Spinner from "../assets/spinner";
 const ActiveImage = () => {
   const { activeImage, isLoading } = useAppSelector(({ gallery }) => gallery);
 
   return (
     <View
-      style={tw`w-full h-[400px] relative flex items-center justify-center rounded-md overflow-hidden`}
+      style={tw`w-full h-10/12  relative flex items-center justify-center  overflow-hidden`}
     >
       {isLoading ? (
         <Spinner />
       ) : (
         <>
           <Image
-            style={tw`w-full h-full object-cover`}
+            style={tw`w-full h-full`}
             source={{ uri: activeImage.urls.small }}
           ></Image>
           <Text style={tw`absolute bottom-10 m-auto text-white text-2xl`}>
