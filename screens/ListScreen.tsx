@@ -2,25 +2,21 @@ import { View, TouchableHighlight, Text } from "react-native";
 import { nanoid } from "@reduxjs/toolkit";
 import ListImage from "../components/ListImage";
 import { useAppSelector } from "../hooks/redux";
-import { fetchImages } from "../hooks/http";
-import { useEffect } from "react";
 import tw from "twrnc";
+import { Button } from "@mui/material";
 import Spinner from "../assets/spinner";
-import { nextImage, prevImage } from "../hooks/http";
+import { nextPage, prevPage } from "../hooks/http";
 import { useAppDispatch } from "../hooks/redux";
 
 const ListScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchImages(1));
-  }, []);
   const { isLoading, list, currentPage } = useAppSelector(
     ({ gallery }) => gallery
   );
 
   return (
     <View style={tw`w-full  flex-col mt-5 items-center`}>
-      <View style={tw`flex-row flex-wrap h-[500px]`}>
+      <View style={tw`w-full flex-row justify-between flex-wrap  h-7/8`}>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -29,12 +25,23 @@ const ListScreen = ({ navigation }: any) => {
           ))
         )}
       </View>
-      <View style={tw`mt-2 mr-5 flex flex-row  justify-center items-center`}>
+      <View
+        style={tw`mt-2 mr-5 h-1/8 flex flex-row  justify-center items-center`}
+      >
+        {/* <TouchableHighlight
+          onPress={() => {
+            if (currentPage !== 1) {
+              dispatch(prevPage(currentPage - 1));
+            }
+          }}
+        >
+          <Button>Prev</Button>
+        </TouchableHighlight> */}
         <View style={tw`mr-6`}>
           <TouchableHighlight
             onPress={() => {
               if (currentPage !== 1) {
-                dispatch(prevImage(currentPage - 1));
+                dispatch(prevPage(currentPage - 1));
               }
             }}
           >
@@ -48,8 +55,7 @@ const ListScreen = ({ navigation }: any) => {
         <View style={tw`flex w-15 h-15 bg-sky-400 items-center justify-center`}>
           <TouchableHighlight
             onPress={() => {
-              console.log(list);
-              dispatch(nextImage(currentPage + 1));
+              dispatch(nextPage(currentPage + 1));
             }}
           >
             <View

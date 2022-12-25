@@ -10,28 +10,25 @@ export const fetchImages = createAsyncThunk<IImage[], number>(
   async () => {
     return await axios
       .get(BASE_URL, { params: { per_page: 20, page: 1 } })
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      });
+  }
+);
+export const nextPage = createAsyncThunk<IImage[], number>(
+  "gallery/nextPage",
+  async (page) => {
+    return await axios
+      .get(BASE_URL, { params: { per_page: 20, page: page } })
       .then((res) => res.data);
   }
 );
-export const nextImage = createAsyncThunk<IImage[], number>(
-  "gallery/nextItem",
+export const prevPage = createAsyncThunk<IImage[], number>(
+  "gallery/prevPage",
   async (page) => {
     return await axios
       .get(BASE_URL, { params: { per_page: 20, page: page } })
-      .then((res) => {
-        console.log(page);
-        return res.data;
-      });
-  }
-);
-export const prevImage = createAsyncThunk<IImage[], number>(
-  "gallery/prevItem",
-  async (page) => {
-    return await axios
-      .get(BASE_URL, { params: { per_page: 20, page: page } })
-      .then((res) => {
-        console.log(page);
-        return res.data;
-      });
+      .then((res) => res.data);
   }
 );

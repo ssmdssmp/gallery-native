@@ -1,7 +1,9 @@
 import { IImage } from "../types/Image";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { nextImage, prevImage } from "../hooks/http";
-import { setActiveImage } from "../store/reducers/gallerySlice";
+import {
+  setActiveImage,
+  setActiveImageList,
+} from "../store/reducers/gallerySlice";
 import { View, TouchableHighlight, Image } from "react-native";
 import tw from "twrnc";
 const ListImage = ({
@@ -16,25 +18,19 @@ const ListImage = ({
 
   const { activeImage } = useAppSelector(({ gallery }) => gallery);
   return (
-    <View
-      style={
-        image.id === activeImage.id
-          ? tw`h-25 flex  justify-between  rounded-md w-23   overflow-hidden border-2 border-pink-300`
-          : tw`h-25 flex  justify-between  rounded-md w-23    overflow-hidden`
-      }
+    <TouchableHighlight
+      style={tw`p-[2px] w-1/4`}
+      onPress={() => {
+        navigation.navigate("ActiveImage");
+        dispatch(setActiveImage(image));
+        dispatch(setActiveImageList(list.indexOf(image)));
+      }}
     >
-      <TouchableHighlight
-        onPress={() => {
-          navigation.navigate("ActiveImage");
-          dispatch(setActiveImage(image));
-        }}
-      >
-        <Image
-          style={tw`h-full w-full`}
-          source={{ uri: image.urls.small }}
-        ></Image>
-      </TouchableHighlight>
-    </View>
+      <Image
+        style={tw` h-22 w-full`}
+        source={{ uri: image.urls.small }}
+      ></Image>
+    </TouchableHighlight>
   );
 };
 

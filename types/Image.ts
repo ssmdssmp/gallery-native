@@ -8,4 +8,5 @@ export interface IImage {
     first_name: string;
     last_name: string;
   };
+  description: string;
 }
