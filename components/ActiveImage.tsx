@@ -21,11 +21,40 @@ const ActiveImage = () => {
           ></Image>
           <Text style={tw`absolute bottom-10 m-auto text-white text-2xl`}>
             {activeImage.description
-              ? activeImage.description
+              ? activeImage.description.length > 30
+                ? activeImage.description.slice(0, 30) + "..."
+                : activeImage.description
               : activeImage.user.last_name
               ? activeImage.user.first_name + " " + activeImage.user.last_name
               : activeImage.user.first_name}
           </Text>
+
+          <View style={tw`absolute top-2 right-2-2`}>
+            <TouchableHighlight
+              underlayColor="rgba(0,0,0,0.1)"
+              onPress={() => {}}
+            >
+              <Ionicons
+                name="bookmark-outline"
+                size={25}
+                color="white"
+                style={tw`opacity-60`}
+              />
+            </TouchableHighlight>
+          </View>
+          <View style={tw`absolute bottom-3 `}>
+            <TouchableHighlight
+              underlayColor="rgba(0,0,0,0.1)"
+              onPress={() => {}}
+            >
+              <Ionicons
+                name="chevron-up"
+                size={25}
+                color="white"
+                style={tw`opacity-40`}
+              />
+            </TouchableHighlight>
+          </View>
         </>
       )}
     </View>

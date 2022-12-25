@@ -15,8 +15,10 @@ const ListScreen = ({ navigation }: any) => {
   );
 
   return (
-    <View style={tw`w-full  flex-col `}>
-      <View style={tw`w-full flex-row  flex-wrap  h-7/8`}>
+    <View style={tw`w-full  flex-col justify-between`}>
+      <View
+        style={tw`w-full items-center justify-center flex-row  flex-wrap  h-7/8`}
+      >
         {isLoading ? (
           <Spinner />
         ) : (

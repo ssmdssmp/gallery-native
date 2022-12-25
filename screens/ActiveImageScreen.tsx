@@ -1,10 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text, TouchableHighlight } from "react-native";
 import ActiveImage from "../components/ActiveImage";
 import ActiveImageList from "../components/ActiveImageList";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import tw from "twrnc";
-import { TouchableHighlight } from "react-native-gesture-handler";
 
 const ActiveImageScreen = ({ navigation }: { navigation: any }) => {
   return (
@@ -14,13 +13,14 @@ const ActiveImageScreen = ({ navigation }: { navigation: any }) => {
         <ActiveImageList />
       </View>
 
-      <TouchableHighlight onPress={() => navigation.navigate("List")}>
-        <Ionicons
-          color="blue"
-          style={tw`mb-[5px]`}
-          name="chevron-back"
-          size={35}
-        />
+      <TouchableHighlight
+        underlayColor="rgba(0,0,0,0.1)"
+        onPress={() => navigation.navigate("List")}
+      >
+        <View style={tw`mb-[4px] flex-row items-center `}>
+          <Ionicons color="blue" name="chevron-back" size={35} />
+          <Text style={tw`ml-2`}>Back to list</Text>
+        </View>
       </TouchableHighlight>
     </View>
   );
